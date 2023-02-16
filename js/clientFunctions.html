@@ -5,6 +5,7 @@
 
         google.script.run.withSuccessHandler((SETTINGS) => {
             // if SETTINGS are needed in startup insert code here
+            document.getElementById('pageContent').innerHTML = SETTINGS.folderName;
         }).withFailureHandler(() => {
             updateStatus({
                 statusSubtitle: "Warning!",
