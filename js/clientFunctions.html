@@ -1,0 +1,47 @@
+<script>
+
+    // client side functions here
+    function loadSettings(){
+
+        google.script.run.withSuccessHandler((SETTINGS) => {
+            // if SETTINGS are needed in startup insert code here
+        }).withFailureHandler(() => {
+            updateStatus({
+                statusSubtitle: "Warning!",
+                statusMessage: "Failure getting settings",
+            });
+        }).getSettings();
+
+        getEventListeners();
+    }
+
+    function getEventListeners(){
+
+        return true;
+    }
+
+
+    function updateStatus(params){
+        document.getElementById('displayStatus').style.display = "block";
+        document.getElementById('statusSubtitle').innerHTML = params.statusSubtitle;
+
+        if (params.statusMessage){
+            document.getElementById('statusMessage').innerHTML = params.statusMessage;
+        }
+        else {
+            document.getElementById('statusMessage').innerHTML  = "";
+        }
+
+        if (params.statusDetails){
+            document.getElementById('statusDetails').innerHTML = params.statusDetails;
+        }
+        else {
+            document.getElementById('statusDetails').innerHTML  = "";
+        }
+    }
+    
+    function clearStatus(){
+        document.getElementById('displayStatus').style.display = "none";
+    }
+
+</script>
