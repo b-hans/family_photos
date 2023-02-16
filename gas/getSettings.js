@@ -1,7 +1,3 @@
-function getSettings(){
-
-    var folderNameTest = DriveApp.getFolderById(SETTINGS.siteFolderId);
-    SETTINGS.folderName = folderNameTest.getName();
-    
+function getSettings(){    
     return SETTINGS;
 }

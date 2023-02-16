@@ -2,21 +2,18 @@
 
     // client side functions here
     function loadSettings(){
-
-        google.script.run.withSuccessHandler((SETTINGS) => {
-            // if SETTINGS are needed in startup insert code here
-            document.getElementById('pageContent').innerHTML = SETTINGS.folderName;
-        }).withFailureHandler(() => {
-            updateStatus({
-                statusSubtitle: "Warning!",
-                statusMessage: "Failure getting settings",
-            });
-        }).getSettings();
-
         getEventListeners();
     }
 
     function getEventListeners(){
+
+        if (document.getElementById('testButton')){
+            document.getElementById('testButton').addEventListener('click', () => {
+                document.getElementById('pageContent').innerHTML = `                
+                    <h2>Button was clicked</h2>                
+                `;
+            });
+        }
 
         return true;
     }
