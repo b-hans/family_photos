@@ -13,7 +13,7 @@ function doGet(e) {
 }
 
 function loadDashboard(){
-  return HtmlService.createTemplateFromFile('views/dashboard').evaluate();
+  return HtmlService.createTemplateFromFile('views/dashboard').evaluate().setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
 }
 
 // helper function to add includes to html

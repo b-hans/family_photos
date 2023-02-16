@@ -1,3 +1,3 @@
 var SETTINGS = {
-    siteTitle: "My Site",
+    siteTitle: "Hanson Family Photos",
 }

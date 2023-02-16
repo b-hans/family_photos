@@ -1,4 +1,3 @@
-
 #!/bin/bash
 
 # copy the file
