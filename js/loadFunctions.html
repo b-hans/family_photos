@@ -1,0 +1,64 @@
+<script>
+
+// load functions here
+
+function loadSlideshow(){
+
+    google.script.run.withSuccessHandler((params) => {
+
+        if (params.errorMessage){
+            updateStatus({
+                statusSubtitle: "Warning!",
+                statusMessage: params.errorMessage,
+            });
+            return;
+        }
+
+
+        var pageContent = `    
+        <!-- Slideshow container -->
+            <div class="slideshow-container">
+
+            <!-- Full-width images with number and caption text -->
+        `;
+
+        for (var i=0; i<params.imageArray.length; i++){
+            var imageNum = i+1;
+            var length = params.imageArray.length;
+            var url = "https://drive.google.com/uc?export=view&id=" + params.imageArray[i];
+
+            pageContent += `
+                <div class="mySlides fade">
+                    <div class="numbertext">${imageNum} / ${length}</div>
+                    <img src="${url}" style="width:100%">
+                    <!-- <div class="text">Caption Text</div> -->
+                </div>            
+            `;
+        }
+
+        pageContent += `
+            <!-- Next and previous buttons -->
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            </div>
+            <br>
+
+            <!-- The dots/circles -->
+            <div style="text-align:center">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            </div>                                
+        `;
+
+        document.getElementById('pageContent').innerHTML = pageContent;
+    }).withFailureHandler(() => {
+        updateStatus({
+            statusSubtitle: "Warning!",
+            statusMessage: "failed to get photos",
+        });
+    }).getPhotos("Album1");
+    
+}
+
+</script>

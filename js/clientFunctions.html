@@ -5,20 +5,6 @@
         getEventListeners();
     }
 
-    function getEventListeners(){
-
-        if (document.getElementById('testButton')){
-            document.getElementById('testButton').addEventListener('click', () => {
-                document.getElementById('pageContent').innerHTML = `                
-                    <h2>Button was clicked</h2>                
-                `;
-            });
-        }
-
-        return true;
-    }
-
-
     function updateStatus(params){
         document.getElementById('displayStatus').style.display = "block";
         document.getElementById('statusSubtitle').innerHTML = params.statusSubtitle;
