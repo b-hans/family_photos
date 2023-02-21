@@ -1,8 +1,38 @@
 <script>
 
     // client side functions here
-    function loadSettings(){
-        getEventListeners();
+    function loadAlbumSettings(){
+
+        //get an album dropdown
+
+        google.script.run.withSuccessHandler((params) => {
+            var dd = document.getElementById('albumControls');
+
+            var ddContent = `
+                <label for='albums'>Photo albums: </label>
+                <select name='albums' id='albums'>
+                    <option value='0'>Select one</option>
+            
+            `;
+
+            for (var i=0; i<params.length; i++){
+                ddContent += '<option value="' + params[i] + '">' +
+                    params[i] + '</option>';
+            }
+
+            ddContent += '</select> ' + 
+            '<button id="loadSlideshow" name="loadSlideshow">Load slideshow</button>';
+
+            dd.innerHTML = ddContent;
+            getEventListeners();
+        }).withFailureHandler(() => {
+            updateStatus({
+                statusSubtitle: "Warning!",
+                statusMessage: "Failed to get album dropdown",
+            });
+        }).getAlbums();
+
+        
     }
 
     function updateStatus(params){

@@ -4,6 +4,20 @@
 
 function loadSlideshow(){
 
+    clearStatus();
+
+    var album = document.getElementById('albums').value;
+
+    if (album == 0){
+
+        updateStatus({
+            statusSubtitle: "Warning!",
+            statusMessage: "You haven't selected an album to view",
+        });
+
+        return;
+    }
+
     google.script.run.withSuccessHandler((params) => {
 
         if (params.errorMessage){
@@ -13,7 +27,6 @@ function loadSlideshow(){
             });
             return;
         }
-
 
         var pageContent = `    
         <!-- Slideshow container -->
@@ -25,12 +38,12 @@ function loadSlideshow(){
         for (var i=0; i<params.imageArray.length; i++){
             var imageNum = i+1;
             var length = params.imageArray.length;
-            var url = "https://drive.google.com/uc?export=view&id=" + params.imageArray[i];
+            var url = "https://lh3.googleusercontent.com/d/" + params.imageArray[i];
 
             pageContent += `
                 <div class="mySlides fade">
                     <div class="numbertext">${imageNum} / ${length}</div>
-                    <img src="${url}" style="width:100%">
+                    <a href="${url}" target="_blank" border="0"><img src="${url}" style="width:600px"></a>
                     <!-- <div class="text">Caption Text</div> -->
                 </div>            
             `;
@@ -43,21 +56,16 @@ function loadSlideshow(){
             </div>
             <br>
 
-            <!-- The dots/circles -->
-            <div style="text-align:center">
-            <span class="dot" onclick="currentSlide(1)"></span>
-            <span class="dot" onclick="currentSlide(2)"></span>
-            <span class="dot" onclick="currentSlide(3)"></span>
-            </div>                                
         `;
 
         document.getElementById('pageContent').innerHTML = pageContent;
+        currentSlide(1);
     }).withFailureHandler(() => {
         updateStatus({
             statusSubtitle: "Warning!",
             statusMessage: "failed to get photos",
         });
-    }).getPhotos("Album1");
+    }).getPhotos(album);
     
 }
 

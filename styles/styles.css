@@ -8,13 +8,25 @@ div.displayStatus {
   display: none;
 }
 
+.hide {
+  display: none;
+}
+
+.showBlock {
+  display: block;
+}
+
+.showInline {
+  display: inline;
+}
+
 * {
   box-sizing: border-box;
 }
 
 /* Slideshow container */
 .slideshow-container {
-  max-width: 1000px;
+  max-width: 632px;
   position: relative;
   margin: auto;
 }
@@ -105,4 +117,7 @@ div.displayStatus {
   to {
     opacity: 1;
   }
+}
+#albumControls {
+  margin-bottom: 1em;
 }/*# sourceMappingURL=styles.css.map */

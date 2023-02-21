@@ -4,16 +4,18 @@
 <head>
     <base target="_top">
 
-
     <?!= include('css/styles'); ?>
+
 </head>
 
-<body onload="loadSettings();">
-    <h1 id="pageTitle">Hanson Family Photos Dashboard</h1>
+<body onload="loadAlbumSettings();">
+    <h1 id="pageTitle">Hanson Family Photo Albums</h1>
     <?!= include('partials/displayStatus'); ?>
 
+    <div id="albumControls" name="albumControls">        
+    </div>
+
     <div id="pageContent">
-        <button id="loadSlideshow" name="loadSlideshow">Load slideshow</button>
     </div>
 
     <?!= include('js/clientFunctions'); ?>
