@@ -31,6 +31,10 @@ function loadSlideshow(){
         var pageContent = `    
         <!-- Slideshow container -->
             <div class="slideshow-container">
+                <!-- Next and previous buttons -->
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
 
             <!-- Full-width images with number and caption text -->
         `;
@@ -50,9 +54,6 @@ function loadSlideshow(){
         }
 
         pageContent += `
-            <!-- Next and previous buttons -->
-            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-            <a class="next" onclick="plusSlides(1)">&#10095;</a>
             </div>
             <br>
 
