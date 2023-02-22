@@ -6,8 +6,13 @@ function getAlbums(){
     var albumsArray = Array();
     while (albums.hasNext()){
         var a = albums.next();
-        albumsArray.push (a.getName());
+        var images = a.getFiles();
+        if (images.hasNext()){
+            albumsArray.push (a.getName());
+        }
     }
+
+    albumsArray.sort();
 
     return albumsArray;
 }
